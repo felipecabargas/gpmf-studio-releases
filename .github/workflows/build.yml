@@ -38,10 +38,10 @@ jobs:
         working-directory: GPMFStudio
         shell: bash
         run: |
-          npm run dist -- --mac --arm64
+          npm run dist -- --mac --arm64 --publish never
           rm -f node_modules/ffmpeg-static/ffmpeg
           npm_config_platform=darwin npm_config_arch=x64 node node_modules/ffmpeg-static/install.js
-          npm run dist -- --mac --x64
+          npm run dist -- --mac --x64 --publish never
           mv release/*-arm64.dmg release/GPMF-Studio-mac-arm64.dmg
           mv release/*-x64.dmg release/GPMF-Studio-mac-x64.dmg
 
@@ -50,7 +50,7 @@ jobs:
         working-directory: GPMFStudio
         shell: bash
         run: |
-          npm run dist -- --win --x64
+          npm run dist -- --win --x64 --publish never
           mv release/*.exe release/GPMF-Studio-win-x64.exe
 
       - name: Build Linux installer
@@ -58,7 +58,7 @@ jobs:
         working-directory: GPMFStudio
         shell: bash
         run: |
-          npm run dist -- --linux --x64
+          npm run dist -- --linux --x64 --publish never
           mv release/*.AppImage release/GPMF-Studio-linux-x64.AppImage
 
       - name: Read app version
