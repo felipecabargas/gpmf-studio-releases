@@ -39,11 +39,11 @@ jobs:
         shell: bash
         run: |
           npm run dist -- --mac --arm64 --publish never
+          mv "release/GPMF Studio-"*.dmg release/GPMF-Studio-mac-arm64.dmg
           rm -f node_modules/ffmpeg-static/ffmpeg
           npm_config_platform=darwin npm_config_arch=x64 node node_modules/ffmpeg-static/install.js
           npm run dist -- --mac --x64 --publish never
-          mv release/*-arm64.dmg release/GPMF-Studio-mac-arm64.dmg
-          mv release/*-x64.dmg release/GPMF-Studio-mac-x64.dmg
+          mv "release/GPMF Studio-"*.dmg release/GPMF-Studio-mac-x64.dmg
 
       - name: Build Windows installer
         if: runner.os == 'Windows'
